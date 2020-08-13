@@ -1,0 +1,14 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://static.dribbble.com/users/297873/screenshots/9896590/media/b5c7d07792d341d7aabd08db8ab9e8f9.jpg);">
+  <div class="container">
+    <h1>We bring you <strong>original cocktails</strong>!</h1>
+     <% @cocktails.each do|cocktail| %>
+       <div class="card">
+         <div class="card-description">
+            <h2><%= cocktail.name %></h2>
+            <h4><%= link_to "Details", cocktail_path(cocktail)%></h4>
+          </div>
+          <% end %>
+         </div>
+  </div>
+</div>
+
