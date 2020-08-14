@@ -1,13 +1,13 @@
-<div class="container">
+<div class="container" id="back">
 
 
   <%= simple_form_for [@cocktail, @dose] do |f| %>
-  <div class="form-row">
+  <div class="form-row justify-content-center align-items-center">
     <h2>Ingredient</h2>
-    <%= f.input :ingredient_id, label: false, collection: @ingredients %>
+    <%=f.input :ingredient_id, label: false, collection: @ingredients %>
   </div>
-  <div class="form-row">
-    <%= f.input :description, label: false  %>
+  <div class="form-row align-items-center justify-content-center">
+    <h2><%= f.input :description  %></h2>
   </div>
     <%= f.submit "Add dose"%>
   <% end %>
@@ -16,8 +16,13 @@
    <% @cocktail.doses.each do |dose|  %>
     <p><%= dose.ingredient.name %> : <%= dose.description %> | <%= link_to "Delete", dose_path(dose), method: :delete, data: { confirm: "Are you sure?" } %></p>
   <% end %>
-    <%= link_to 'Back', cocktails_path %>
+  <% if @cocktail.photo.attached? %>
+      <%= cl_image_tag @cocktail.photo.key, width: 300, height: 300, crop: :fill%>
+  <% else %>
+    <p>No photo attached</p>
+  <% end %>
 </div>
 
+ <%= link_to 'Back', cocktails_path %>
 
 

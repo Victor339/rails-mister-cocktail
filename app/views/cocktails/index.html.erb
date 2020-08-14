@@ -1,11 +1,20 @@
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://static.dribbble.com/users/297873/screenshots/9896590/media/b5c7d07792d341d7aabd08db8ab9e8f9.jpg);">
   <div class="container">
     <h1>We bring you <strong>original cocktails</strong>!</h1>
+
      <% @cocktails.each do|cocktail| %>
        <div class="card">
          <div class="card-description">
             <h2><%= cocktail.name %></h2>
+            <% if cocktail.photo.attached? %>
+                <%= cl_image_tag cocktail.photo.key, width: 300, height: 150, crop: :fill%>
+            <% else %>
+              <p>No photo attached</p>
+            <% end %>
             <h4><%= link_to "Details", cocktail_path(cocktail)%></h4>
+            <h4><td><%= link_to(cocktail, method: :delete, data: { confirm: 'Are you sure?' }) do %></td></h4>
+            <%=  '<i class="fas fa-trash"></i>'.html_safe %>
+            <% end %>
           </div>
           <% end %>
          </div>
